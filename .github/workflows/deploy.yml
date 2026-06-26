@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "."
-          target: "/root/iranhtp-frontend" # این مسیر را با مسیر دقیق سرورتان جایگزین کنید
+          target: "/root/iranhtp-frontend"
 
       - name: Deploy on server via SSH
         uses: appleboy/ssh-action@v1.0.3
