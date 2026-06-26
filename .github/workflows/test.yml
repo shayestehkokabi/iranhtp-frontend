@@ -1,0 +1,10 @@
+        name: Test Workflow
+
+        on: [push]
+
+        jobs:
+          test-job:
+            runs-on: ubuntu-latest
+            steps:
+              - name: Simple Test
+                run: echo "Hello from GitHub Actions!"
