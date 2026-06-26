@@ -34,43 +34,104 @@ export default function Home() {
         {/* Mobile/Mega Menu will be implemented here */}
       </nav>
 
+      import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image"; // مطمئن شو image وارد شده
+
+export default function HomePage() {
+  return (
+    <main className="flex flex-col min-h-screen bg-gradient-to-br from-blue-100 to-teal-100 dark:from-gray-900 dark:to-black">
       {/* Hero Section */}
-      <section className="relative h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden text-white py-20">
-        <div className="absolute inset-0 z-0">
-          {/* Overlay with gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70 z-10" />
-          {/* Background Image */}
-          <Image
-            src="https://images.unsplash.com/photo-1684699793677-a72a806d118a?auto=format&fit=crop&q=80&w=2000&blend=0%7E000000&blend-mode=normal" // New premium image
-            alt="Medical Tourism Iran - World Class Healthcare"
-            layout="fill"
-            objectFit="cover"
-            quality={80}
-            className="scale-105"
-          />
+      <section
+        className="relative w-full h-[70vh] flex items-center justify-center text-center overflow-hidden"
+        style={{
+          backgroundImage: "url('/images/hero-background.jpg')", // مسیر تصویر پس‌زمینه
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/90"></div>
+
+        <div className="relative z-10 max-w-4xl px-6 text-white">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+            تجربه مراقبت‌های درمانی در سطح جهانی در ایران
+          </h1>
+          <p className="text-lg md:text-xl mb-8 text-gray-300">
+            از بهترین تخصص‌های پزشکی تا تسهیلات درمانی مدرن، سفری مطمئن به سوی سلامتی شما.
+          </p>
+
+          {/* Search Bar */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+            <Input
+              type="text"
+              placeholder="جستجوی درمان، پزشک یا تخصص..."
+              className="w-full md:w-1/2 h-14 text-lg px-6 py-4 rounded-full bg-white/90 text-black focus:ring-2 focus:ring-teal-400 focus:border-teal-400"
+            />
+            <Button
+              variant="secondary"
+              className="h-14 px-8 py-4 rounded-full text-lg font-semibold bg-teal-500 hover:bg-teal-600 text-white shadow-lg transition duration-300 ease-in-out"
+            >
+              جستجو
+            </Button>
+          </div>
+
+          {/* Call to Actions */}
+          <div className="flex justify-center gap-6">
+            <Button
+              variant="outline"
+              className="h-12 px-6 py-3 rounded-full text-base font-semibold border-2 border-teal-400 text-teal-400 hover:bg-teal-500 hover:text-white transition duration-300 ease-in-out"
+            >
+              دریافت مشاوره رایگان
+            </Button>
+            <Button
+              variant="default"
+              className="h-12 px-6 py-3 rounded-full text-base font-semibold bg-white text-black hover:bg-gray-200 transition duration-300 ease-in-out"
+            >
+              مشاهده خدمات
+            </Button>
+          </div>
         </div>
 
-        <div className="relative z-20 text-center px-4 max-w-5xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-xl">
-            <span className="text-teal-300">Your Gateway</span> to {" "}
-            <span className="text-white">World-Class Health & Wellness</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-white/90 mb-12 leading-relaxed drop-shadow-md max-w-3xl mx-auto">
-            Discover exceptional medical care, cutting-edge treatments, and unparalleled hospitality in Iran. IranHTP makes your health journey seamless and exceptional.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-teal-400 to-teal-300 text-slate-900 shadow-lg shadow-teal-300/40 hover:scale-105 hover:from-teal-500 hover:to-teal-400 transition-all duration-300">
-              Explore Treatments
-              <span>→</span>
-            </button>
-            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 transition-all duration-300">
-              Concierge Services
-              <span>→</span>
-            </button>
+        {/* Trust Badges (Optional - could be a separate component) */}
+        <div className="absolute bottom-0 left-0 right-0 py-4 bg-black/50">
+          <div className="flex justify-center items-center space-x-8">
+            {/* Replace with your actual accreditation logos */}
+            <Image src="/logos/accreditation-1.png" alt="Accreditation 1" width={100} height={50} className="h-8 w-auto grayscale hover:grayscale-0 transition duration-300" />
+            <Image src="/logos/accreditation-2.png" alt="Accreditation 2" width={100} height={50} className="h-8 w-auto grayscale hover:grayscale-0 transition duration-300" />
+            <Image src="/logos/accreditation-3.png" alt="Accreditation 3" width={100} height={50} className="h-8 w-auto grayscale hover:grayscale-0 transition duration-300" />
           </div>
         </div>
       </section>
 
+      {/* Rest of your page content will go here */}
+      {/* Example: Quick Access Grid, Popular Treatments, etc. */}
+      <section className="py-16 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">دسترسی سریع</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1: Health Visa */}
+            <Card className="bg-blue-50 dark:bg-gray-700 shadow-lg rounded-xl border-none">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-xl font-bold text-blue-700 dark:text-blue-300">ویزای درمانی</CardTitle>
+                {/* Icon Placeholder */}
+                <svg className="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-3M9 5v2a2 2 0 01-2 2H5m3 4h7m-7 4h7m-7 4h7M5 12a1 1 0 11-2 0 1 1 0 012 0z" />
+                </svg>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 dark:text-gray-300">راهنمای کامل و تسهیلات اخذ ویزای درمانی.</p>
+              </CardContent>
+            </Card>
+
+            {/* Card 2: Appointment Booking */}
+            <Card className="bg-teal-50 dark:bg-gray-700 shadow-lg rounded-xl border-none">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-xl font-bold text-teal-700 dark:text-teal-300">رزرو نوبت</CardTitle>
+                {/* Icon Placeholder */}
+                <svg className="h-8 w-8 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 3h10M4.334 7c1.158-4.531 3.72-6.322 7.666-6.322s6.508 1.791 7.666 6.322M4.334 7C3
       {/* Trust Badges Section */}
       <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-16 border-b border-slate-200/60">
         <div className="container mx-auto px-6">
