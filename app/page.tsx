@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-<<<<<<< HEAD
 import { Stethoscope, Plane, ClipboardCheck, UserCircle, ArrowRight } from "lucide-react";
 
 export default function HomePage() {
@@ -24,7 +23,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick Access Section */}
-=======
+
 import { Stethoscope, Plane, ClipboardCheck, UserCircle, ArrowRight, HeartPulse, ShieldCheck, Newspaper, Award } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -51,11 +50,11 @@ export default function HomePage() {
           { title: "Health Visa", icon: Plane },
           { title: "My Bookings", icon: ClipboardCheck },
           { title: "My Account", icon: UserCircle },
-<<<<<<< HEAD
+
         ].map((item, index) => (
           <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow border-t-4 border-t-blue-500">
             <CardHeader className="flex flex-row items-center gap-4">
-=======
+
         ].map((item, i) => (
           <Card key={i} className="hover:border-blue-500 transition-colors shadow-lg cursor-pointer">
             <CardHeader className="flex flex-row items-center gap-3">
@@ -65,7 +64,7 @@ export default function HomePage() {
             </CardHeader>
           </Card>
         ))}
-<<<<<<< HEAD
+
       </section>
 
       {/* Placeholder for Next Sections (Blog, FAQ, etc.) */}
@@ -77,7 +76,7 @@ export default function HomePage() {
            <Card><CardContent className="p-6">Blog post card example...</CardContent></Card>
            <Card><CardContent className="p-6">Blog post card example...</CardContent></Card>
         </div>
-=======
+
       </section>
 
       {/* Trust & Accreditations (جدید) */}
