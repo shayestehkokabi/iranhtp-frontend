@@ -20,3 +20,4 @@ jobs:
           script: |
             cd /root/iranhtp-frontend
             ./deploy.sh
+   
