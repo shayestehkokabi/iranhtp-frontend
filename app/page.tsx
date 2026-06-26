@@ -1,198 +1,353 @@
-import Image from "next/image";
-
 export default function Home() {
+  const services = [
+    {
+      title: "Medical Coordination",
+      desc: "From doctor matching to appointment scheduling, we manage the full journey.",
+      icon: "🩺",
+    },
+    {
+      title: "Airport & Hotel Pickup",
+      desc: "Private transfers, premium stays, and smooth arrival support for patients and families.",
+      icon: "✈️",
+    },
+    {
+      title: "Treatment Planning",
+      desc: "Personalized treatment pathways with transparent guidance and fast communication.",
+      icon: "📋",
+    },
+  ];
+
+  const hospitals = [
+    {
+      name: "Razavi Hospital Complex",
+      city: "Mashhad",
+      specialty: "Cardiology, Oncology, Advanced Surgery",
+    },
+    {
+      name: "Gandhi Hotel-Hospital",
+      city: "Tehran",
+      specialty: "Luxury Care, General Surgery, VIP Services",
+    },
+    {
+      name: "Namazi Hospital",
+      city: "Shiraz",
+      specialty: "Transplant Center, Research, Specialized Care",
+    },
+  ];
+
+  const steps = [
+    {
+      title: "Tell us your need",
+      desc: "Share your condition, preferred city, and treatment goals.",
+    },
+    {
+      title: "Get matched",
+      desc: "We connect you with the right specialist and hospital.",
+    },
+    {
+      title: "Travel with confidence",
+      desc: "We handle logistics, coordination, and on-ground support.",
+    },
+  ];
+
+  const stats = [
+    { value: "24/7", label: "Support" },
+    { value: "40+", label: "Partner Clinics" },
+    { value: "8k+", label: "Patients Assisted" },
+    { value: "98%", label: "Satisfaction Rate" },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 font-sans antialiased">
-      {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-white/50 backdrop-blur-lg border-b border-slate-200/60 shadow-md">
-        <div className="container mx-auto flex justify-between items-center h-16">
-          {/* Logo */}
-          <a href="/" className="text-3xl font-extrabold bg-gradient-to-r from-blue-700 to-teal-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
-            IranHTP
+    <main className="min-h-screen bg-slate-950 text-white">
+      {/* Top Nav */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+          <a href="/" className="text-2xl font-black tracking-tight">
+            <span className="text-cyan-400">Iran</span>HTP
           </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8 font-medium text-slate-700">
-            <NavItem href="/#hospitals" label="Hospitals" />
-            <NavItem href="/#treatments" label="Treatments" />
-            <NavItem href="/#concierge" label="Concierge" />
-            <NavItem href="/#about" label="About Iran" />
-          </div>
+          <nav className="hidden items-center gap-8 md:flex">
+            <a href="#services" className="text-sm text-white/75 transition hover:text-white">
+              Services
+            </a>
+            <a href="#hospitals" className="text-sm text-white/75 transition hover:text-white">
+              Hospitals
+            </a>
+            <a href="#process" className="text-sm text-white/75 transition hover:text-white">
+              Process
+            </a>
+            <a href="#contact" className="text-sm text-white/75 transition hover:text-white">
+              Contact
+            </a>
+          </nav>
 
-          {/* CTA Button */}
-          <div className="flex items-center gap-4">
-            <button className="hidden md:inline-flex items-center justify-center px-7 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-300/40 hover:from-blue-700 hover:to-blue-800 hover:scale-105 transition-all duration-300 text-sm">
-              Get a Free Quote
-            </button>
-            {/* Mobile Menu Button (will be implemented for Mega Menu) */}
-            <button className="md:hidden text-3xl text-slate-700 hover:text-blue-600 transition">
-              {/* Replace with a proper menu icon later */}
-              ☰
-            </button>
-          </div>
+          <a
+            href="#contact"
+            className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+          >
+            Get Free Quote
+          </a>
         </div>
-        {/* Mobile/Mega Menu will be implemented here */}
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <section className="relative h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden text-white py-20">
-        <div className="absolute inset-0 z-0">
-          {/* Overlay with gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70 z-10" />
-          {/* Background Image */}
-          <Image
-            src="https://images.unsplash.com/photo-1684699793677-a72a806d118a?auto=format&fit=crop&q=80&w=2000&blend=0%7E000000&blend-mode=normal" // New premium image
-            alt="Medical Tourism Iran - World Class Healthcare"
-            layout="fill"
-            objectFit="cover"
-            quality={80}
-            className="scale-105"
-          />
+      {/* Hero */}
+      <section className="relative overflow-hidden px-6 pt-32">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute left-1/2 top-[-160px] h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="absolute right-[-120px] top-[120px] h-[320px] w-[320px] rounded-full bg-blue-500/20 blur-3xl" />
+          <div className="absolute bottom-[-120px] left-[-80px] h-[300px] w-[300px] rounded-full bg-fuchsia-500/10 blur-3xl" />
         </div>
 
-        <div className="relative z-20 text-center px-4 max-w-5xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-xl">
-            <span className="text-teal-300">Your Gateway</span> to {" "}
-            <span className="text-white">World-Class Health & Wellness</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-white/90 mb-12 leading-relaxed drop-shadow-md max-w-3xl mx-auto">
-            Discover exceptional medical care, cutting-edge treatments, and unparalleled hospitality in Iran. IranHTP makes your health journey seamless and exceptional.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-teal-400 to-teal-300 text-slate-900 shadow-lg shadow-teal-300/40 hover:scale-105 hover:from-teal-500 hover:to-teal-400 transition-all duration-300">
-              Explore Treatments
-              <span>→</span>
-            </button>
-            <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-full text-lg font-bold bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 transition-all duration-300">
-              Concierge Services
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Badges Section */}
-      <section className="bg-gradient-to-br from-slate-50 to-blue-50 py-16 border-b border-slate-200/60">
-        <div className="container mx-auto px-6">
-          <h2 className="text-center text-3xl font-bold text-slate-800 mb-10">Trusted by Leading Institutions</h2>
-          <div className="flex flex-wrap justify-center items-center gap-10 opacity-70 hover:opacity-100 transition-opacity duration-500">
-            {/* Replace with actual logos - Placeholder text here */}
-            <span className="text-xl font-semibold text-gray-600 italic">MOH Certified</span>
-            <span className="text-xl font-semibold text-gray-600 italic">ISO 9001</span>
-            <span className="text-xl font-semibold text-gray-600 italic">HTA Accredited</span>
-            <span className="text-xl font-semibold text-gray-600 italic">JCI Partner</span>
-            <span className="text-xl font-semibold text-gray-600 italic">24/7 Global Support</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Hospitals Section (Improved) */}
-      <section id="hospitals" className="py-24 container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-14">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 py-20 lg:grid-cols-2">
           <div>
-            <h2 className="text-4xl font-bold text-slate-800 leading-tight">Discover Iran's Elite Medical Centers</h2>
-            <p className="text-xl text-slate-500 mt-3 max-w-lg">Experience unparalleled healthcare quality and advanced treatments at our partner hospitals and clinics.</p>
-          </div>
-          <a href="/hospitals" className="flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-700 group transition-colors duration-300">
-            View All Centers
-            <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-          </a>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {[
-            { name: "Razavi Hospital Complex", city: "Mashhad", image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=85&w=800", specialty: "World-Class Cardiology & Oncology", description: "State-of-the-art facilities and expert Schedulers." },
-            { name: "Gandhi Hotel-Hospital", city: "Tehran", image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=85&w=800", specialty: "Luxury General Surgery & Comprehensive Care", description: "Combining advanced medical services with hotel-level comfort." },
-            { name: "Namazi Hospital", city: "Shiraz", image: "https://images.unsplash.com/photo-1632833239127-9160f3011950?auto=format&fit=crop&q=85&w=800", specialty: "Renowned Transplant Center & Research", description: "Leading pioneers in organ transplantation." }
-          ].map((hosp, i) => (
-            <div key={i} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-100 hover:border-blue-300/50">
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src={hosp.image}
-                  alt={hosp.name}
-                  layout="fill"
-                  objectFit="cover"
-                  quality={85}
-                  className="group-hover:scale-110 transition-transform duration-[700ms]"
-                />
-              </div>
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-2xl font-bold text-slate-800 leading-tight">{hosp.name}</h3>
-                  <span className="bg-blue-100 text-blue-700 text-sm px-3 py-1.5 rounded-md font-semibold whitespace-nowrap">{hosp.city}</span>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
+              <span className="h-2 w-2 rounded-full bg-cyan-400" />
+              Premium Medical Tourism in Iran
+            </div>
+
+            <h1 className="max-w-2xl text-5xl font-black leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+              World-class care,
+              <span className="block bg-gradient-to-r from-cyan-300 via-white to-blue-300 bg-clip-text text-transparent">
+                seamless travel.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/70">
+              We help international patients find the right hospital, specialist,
+              and travel support in Iran — fast, clear, and stress-free.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-7 py-4 font-semibold text-slate-950 transition hover:bg-cyan-300"
+              >
+                Start Consultation
+              </a>
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-4 font-semibold text-white transition hover:bg-white/10"
+              >
+                Explore Services
+              </a>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center shadow-lg shadow-black/10"
+                >
+                  <div className="text-2xl font-extrabold text-white">{stat.value}</div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.2em] text-white/45">
+                    {stat.label}
+                  </div>
                 </div>
-                <p className="text-md text-slate-600 mb-5 leading-relaxed">{hosp.specialty}</p>
-                <p className="text-sm text-slate-500 mb-6">{hosp.description}</p>
-                <button className="w-full py-3.5 rounded-xl border-2 border-slate-200 font-bold text-slate-800 group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-slate-900 group-hover:text-white group-hover:border-slate-800 transition-all duration-400 shadow-sm hover:shadow-md">
-                  View Details & Book
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-cyan-400/20 via-blue-400/10 to-fuchsia-400/20 blur-2xl" />
+            <div className="rounded-[2rem] border border-white/10 bg-white/8 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl">
+              <div className="rounded-[1.6rem] border border-white/10 bg-slate-900 p-6">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <p className="text-sm text-white/45">Patient Support</p>
+                    <h2 className="text-xl font-bold">Fast matching workflow</h2>
+                  </div>
+                  <div className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm text-emerald-300">
+                    Online
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {[
+                    ["Treatment Request", "Completed"],
+                    ["Hospital Selection", "Completed"],
+                    ["Travel Plan", "In progress"],
+                    ["Appointment Booking", "Pending"],
+                  ].map(([label, status]) => (
+                    <div
+                      key={label}
+                      className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/5 px-4 py-4"
+                    >
+                      <span className="text-sm text-white/80">{label}</span>
+                      <span className="text-sm font-medium text-cyan-300">{status}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-500 p-5 text-slate-950">
+                  <p className="text-sm font-semibold">Why patients choose us</p>
+                  <p className="mt-2 text-sm leading-6">
+                    Transparent communication, verified hospitals, and full travel
+                    coordination under one roof.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="services" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+              Services
+            </p>
+            <h2 className="mt-3 text-4xl font-black tracking-tight">
+              Everything needed for a smooth medical trip
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-7 transition hover:-translate-y-1 hover:bg-white/[0.07]"
+              >
+                <div className="text-4xl">{service.icon}</div>
+                <h3 className="mt-5 text-xl font-bold">{service.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hospitals */}
+      <section id="hospitals" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+                Hospitals
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight">
+                Partner hospitals built for trust and quality
+              </h2>
+            </div>
+            <a href="#contact" className="text-sm font-semibold text-cyan-300 hover:text-cyan-200">
+              Need a recommendation? →
+            </a>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {hospitals.map((hospital) => (
+              <div
+                key={hospital.name}
+                className="overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-xl shadow-black/20"
+              >
+                <div className="h-40 bg-gradient-to-br from-cyan-500 via-blue-500 to-fuchsia-500" />
+                <div className="p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-bold">{hospital.name}</h3>
+                      <p className="mt-1 text-sm text-white/55">{hospital.specialty}</p>
+                    </div>
+                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+                      {hospital.city}
+                    </span>
+                  </div>
+
+                  <button className="mt-6 w-full rounded-2xl border border-white/10 bg-white/5 py-3 font-semibold text-white transition hover:bg-white/10">
+                    View Details
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section id="process" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+            Process
+          </p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight">
+            How it works in 3 simple steps
+          </h2>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {steps.map((step, index) => (
+              <div key={step.title} className="rounded-3xl bg-slate-950/70 p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-400 text-lg font-black text-slate-950">
+                  0{index + 1}
+                </div>
+                <h3 className="mt-5 text-xl font-bold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="contact" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl rounded-[2rem] bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500 p-[1px]">
+          <div className="rounded-[2rem] bg-slate-950 px-8 py-12 md:px-12">
+            <div className="grid gap-8 md:grid-cols-2 md:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+                  Contact
+                </p>
+                <h2 className="mt-3 text-4xl font-black tracking-tight">
+                  Ready to start your treatment journey?
+                </h2>
+                <p className="mt-4 max-w-xl text-white/65">
+                  Send us your request and we’ll guide you to the best hospital,
+                  specialist, and travel plan.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-white/35"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-white/35"
+                  />
+                </div>
+                <textarea
+                  placeholder="Tell us about your medical need..."
+                  className="mt-4 min-h-[120px] w-full rounded-2xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none placeholder:text-white/35"
+                />
+                <button className="mt-4 w-full rounded-2xl bg-cyan-400 py-4 font-semibold text-slate-950 transition hover:bg-cyan-300">
+                  Send Request
                 </button>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Placeholder for Treatments Section */}
-      <section id="treatments" className="py-24 bg-slate-900 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">Comprehensive Treatment Options</h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12">From advanced surgical procedures to wellness programs, find the care you need.</p>
-          <button className="px-10 py-4 rounded-full text-lg font-bold bg-gradient-to-r from-teal-400 to-teal-300 text-slate-900 shadow-lg shadow-teal-300/40 hover:scale-105 transition-all duration-300">
-            View All Treatments
-          </button>
-        </div>
-      </section>
-
-      {/* Placeholder for Concierge Section */}
-      <section id="concierge" className="py-24 bg-slate-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-slate-800 mb-6">Personalized Concierge Services</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-12">We handle all the details of your travel, accommodation, and local arrangements for a stress-free experience.</p>
-          <button className="px-10 py-4 rounded-full text-lg font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-300/40 hover:scale-105 transition-all duration-300">
-            Discover Our Services
-          </button>
-        </div>
-      </section>
-
-      {/* About Iran Section (Placeholder) */}
-      <section id="about" className="py-24 bg-gradient-to-br from-white to-slate-100">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-slate-800 mb-6">Experience Iran's Rich Culture & Hospitality</h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-12">Combine your medical journey with an unforgettable cultural exploration.</p>
-          <button className="px-10 py-4 rounded-full text-lg font-bold border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
-            Learn More About Iran
-          </button>
-        </div>
-      </section>
-
-      {/* Footer (Basic Placeholder) */}
-      <footer className="bg-slate-800 text-slate-300 py-16">
-        <div className="container mx-auto px-6 text-center">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
-            <div className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
-              IranHTP
-            </div>
-            <div className="flex gap-6 text-lg">
-              <a href="/#" className="hover:text-white transition">Privacy Policy</a>
-              <a href="/#" className="hover:text-white transition">Terms of Service</a>
-              <a href="/#" className="hover:text-white transition">Contact Us</a>
-            </div>
           </div>
-          <p className="text-sm text-slate-500">© 2026 IranHTP. All rights reserved.</p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 px-6 py-10 text-white/50">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <p>© 2026 IranHTP. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-white">
+              Terms
+            </a>
+            <a href="#" className="hover:text-white">
+              Contact
+            </a>
+          </div>
         </div>
       </footer>
     </main>
-  );
-}
-
-// Helper Component for Navigation Items
-function NavItem({ href, label }: { href: string; label: string }) {
-  return (
-    <a
-      href={href}
-      className="text-slate-600 font-medium hover:text-blue-600 transition relative group"
-    >
-      {label}
-      <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-blue-500 rounded-full group-hover:w-full transition-all duration-300"></span>
-    </a>
   );
 }
