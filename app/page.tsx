@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Stethoscope, Plane, ClipboardCheck, UserCircle, ArrowRight, HeartPulse, ShieldCheck, ChevronDown } from "lucide-react";
+import { Stethoscope, Plane, ClipboardCheck, UserCircle, ArrowRight, HeartPulse, ShieldCheck, Newspaper, Award } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function HomePage() {
@@ -35,36 +35,56 @@ export default function HomePage() {
         ))}
       </section>
 
+      {/* Trust & Accreditations (جدید) */}
+      <section className="py-20 px-6 max-w-6xl mx-auto text-center">
+        <div className="flex justify-center gap-12 opacity-70">
+           <div className="flex items-center gap-2"><Award /> ISO Certified</div>
+           <div className="flex items-center gap-2"><ShieldCheck /> Global Health Standards</div>
+           <div className="flex items-center gap-2"><HeartPulse /> 15+ Years Experience</div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
+      <section className="py-10 px-6 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12">Our Core Specialties</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { title: "Aesthetic Surgery", desc: "Advanced procedures for body and face transformation." },
-            { title: "Hair Transplantation", desc: "Leading techniques for natural-looking results." },
-            { title: "Dental Care", desc: "Comprehensive dental services and smile design." },
-          ].map((service, i) => (
+          {[{ title: "Aesthetic Surgery", icon: HeartPulse }, { title: "Hair Transplantation", icon: Stethoscope }, { title: "Dental Care", icon: ShieldCheck }].map((s, i) => (
             <Card key={i} className="p-6">
-              <HeartPulse className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className="text-slate-600 mb-4">{service.desc}</p>
+              <s.icon className="w-12 h-12 text-blue-600 mb-4" />
+              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
               <Button variant="link" className="p-0 text-blue-600">Learn more <ArrowRight className="ml-2 w-4 h-4" /></Button>
             </Card>
           ))}
         </div>
       </section>
 
+      {/* Blog Section (جدید) */}
+      <section className="py-20 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold mb-10 flex items-center gap-3"><Newspaper /> Latest Health Guides</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="overflow-hidden">
+              <div className="h-40 bg-slate-200" />
+              <CardContent className="p-4">
+                <h4 className="font-bold mb-2">Top 10 Tips for Post-Surgery Recovery</h4>
+                <p className="text-sm text-slate-500">Read our expert advice for a faster and smoother healing process.</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 px-6 max-w-4xl mx-auto bg-white rounded-xl shadow-sm">
+      <section className="py-20 px-6 max-w-4xl mx-auto mb-20 bg-white rounded-xl shadow-sm">
         <h2 className="text-3xl font-bold text-center mb-10">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>How does the consultation process work?</AccordionTrigger>
-            <AccordionContent>We provide a free initial consultation via video call to discuss your health goals.</AccordionContent>
+            <AccordionContent>We provide a free initial consultation via video call.</AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
             <AccordionTrigger>What does the travel package include?</AccordionTrigger>
-            <AccordionContent>Our packages include surgery, hotel, airport transfers, and a personal medical coordinator.</AccordionContent>
+            <AccordionContent>Surgery, hotel, airport transfers, and a personal coordinator.</AccordionContent>
           </AccordionItem>
         </Accordion>
       </section>
