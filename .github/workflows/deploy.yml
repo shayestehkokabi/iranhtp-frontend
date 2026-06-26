@@ -1,46 +1,56 @@
-name: Deploy to server
+name: Deploy Next.js App
 
 on:
   push:
     branches:
-      - master
+      - main # یا شاخه‌ای که می‌خواهید دیپلوی کنید
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy files to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          source: "."
-          # مسیر مقصد در سرور - مطمئن شوید این پوشه وجود دارد
-          target: "/root/iranhtp-frontend"
+          node-version: '20' # یا نسخه مورد نیاز شما، مثلا '20.18.1'
 
-      - name: Deploy on server via SSH
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
           script: |
-            # رفتن به پوشه پروژه
-            cd /root/iranhtp-frontend
+            # اطمینان از فعال بودن NVM و انتخاب نسخه درست Node.js
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install 20 --latest # نصب آخرین نسخه 20.x اگر موجود نیست و سوئیچ به آن
+            nvm use 20
+            node -v # برای اطمینان از نسخه صحیح
 
-            # اجرای دستورات بیلد و ریستارت
-            # این دستورات را با توجه به نیاز پروژه خودتان تنظیم کنید
-            # مثال برای Next.js:
-            npm install
-            npm run build
-            # برای اجرای برنامه (مثلا با pm2)
-            # ابتدا مطمئن شوید pm2 نصب است: npm install pm2 -g
-            # سپس برنامه را ریستارت کنید:
-            pm2 restart iranhtp-frontend || pm2 start npm --name "iranhtp-frontend" -- start
+            # رفتن به پوشه پروژه در سرور
+            cd /root/iranhtp-frontend # مطمئن شوید این مسیر صحیح است
+
+            # نصب پکیج‌ها (اگر لازم است، ممکن است کپی شده باشند)
+            # npm install
+
+            # اجرای بیلد (اگر لازم است، معمولا در محیط CI بیلد شده)
+            # npm run build
+
+            # ریستارت کردن برنامه با PM2
+            # اطمینان از نصب بودن pm2
+            if ! command -v pm2 &> /dev/null
+            then
+                echo "pm2 could not be found, installing globally..."
+                npm install pm2 -g
+            fi
+            pm2 restart iranhtp-frontend || pm2 start npm --name "iranhtp-frontend" -- start --no-daemon
