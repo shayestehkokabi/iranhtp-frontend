@@ -3,7 +3,7 @@ name: Deploy to server
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -20,4 +20,3 @@ jobs:
           script: |
             cd /root/iranhtp-frontend
             ./deploy.sh
-   
