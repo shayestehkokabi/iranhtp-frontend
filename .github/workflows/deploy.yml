@@ -21,6 +21,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "."
+          # مسیر مقصد در سرور - مطمئن شوید این پوشه وجود دارد
           target: "/root/iranhtp-frontend"
 
       - name: Deploy on server via SSH
@@ -31,6 +32,15 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /root/iranhtp-frontend # این مسیر را هم دقیق کنید
-            chmod +x deploy.sh
-            ./deploy.sh
+            # رفتن به پوشه پروژه
+            cd /root/iranhtp-frontend
+
+            # اجرای دستورات بیلد و ریستارت
+            # این دستورات را با توجه به نیاز پروژه خودتان تنظیم کنید
+            # مثال برای Next.js:
+            npm install
+            npm run build
+            # برای اجرای برنامه (مثلا با pm2)
+            # ابتدا مطمئن شوید pm2 نصب است: npm install pm2 -g
+            # سپس برنامه را ریستارت کنید:
+            pm2 restart iranhtp-frontend || pm2 start npm --name "iranhtp-frontend" -- start
