@@ -36,7 +36,6 @@ jobs:
             nvm use 20
             node -v # چک کردن نسخه Node.js
 
-            # رفتن به پوشه پروژه در سرور
             # اگر پوشه وجود ندارد، آن را بسازید
             mkdir -p /root/iranhtp-frontend
             cd /root/iranhtp-frontend
