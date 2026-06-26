@@ -10,6 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "."
+          target: "/root/iranhtp-frontend" # این مسیر را با مسیر دقیق سرورتان جایگزین کنید
+
       - name: Deploy on server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -18,5 +31,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ${{ github.workspace }}
+            cd /root/iranhtp-frontend # این مسیر را هم دقیق کنید
+            chmod +x deploy.sh
             ./deploy.sh
