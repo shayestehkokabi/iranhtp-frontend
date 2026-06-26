@@ -6,21 +6,17 @@ on:
       - main # یا شاخه‌ای که می‌خواهید دیپلوی کنید
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20' # یا نسخه مورد نیاز شما، مثلا '20.18.1'
-
-      - name: Install Dependencies and Build
-        run: |
-          npm install
-          npm run build
+      # نیازی به setup-node در اینجا نیست چون بیلد را در سرور انجام می‌دهیم
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
 
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -30,27 +26,38 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            # اطمینان از فعال بودن NVM و انتخاب نسخه درست Node.js
+            # فعال کردن NVM و انتخاب نسخه صحیح Node.js
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm install 20 --latest # نصب آخرین نسخه 20.x اگر موجود نیست و سوئیچ به آن
+
+            # نصب آخرین نسخه Node.js 20.x اگر قبلا نصب نشده باشد
+            # اگر نسخه خاصی مد نظر است، مثلا 20.18.1، آن را جایگزین کنید
+            nvm install 20 --latest
             nvm use 20
-            node -v # برای اطمینان از نسخه صحیح
+            node -v # چک کردن نسخه Node.js
 
             # رفتن به پوشه پروژه در سرور
-            cd /root/iranhtp-frontend # مطمئن شوید این مسیر صحیح است
+            # اگر پوشه وجود ندارد، آن را بسازید
+            mkdir -p /root/iranhtp-frontend
+            cd /root/iranhtp-frontend
 
-            # نصب پکیج‌ها (اگر لازم است، ممکن است کپی شده باشند)
-            # npm install
+            # کپی کردن فایل های پروژه (به جز node_modules)
+            # اگر قبلا فایل ها را کپی کرده اید، این مرحله را حذف کنید
+            # یا از 'appleboy/scp-action' برای کپی استفاده کنید
+            # این بخش به صورت دستی است و نیاز به تنظیمات بیشتر دارد
+            # اگر از scp-action استفاده می کنید، این قسمت را بردارید و scp-action را قبل از ssh-action اجرا کنید
 
-            # اجرای بیلد (اگر لازم است، معمولا در محیط CI بیلد شده)
-            # npm run build
-
-            # ریستارت کردن برنامه با PM2
             # اطمینان از نصب بودن pm2
             if ! command -v pm2 &> /dev/null
             then
                 echo "pm2 could not be found, installing globally..."
                 npm install pm2 -g
             fi
+            pm2 --version # چک کردن نسخه pm2
+
+            # نصب پکیج ها و بیلد کردن پروژه در سرور
+            npm install
+            npm run build
+
+            # ریستارت کردن برنامه با PM2
             pm2 restart iranhtp-frontend || pm2 start npm --name "iranhtp-frontend" -- start --no-daemon
