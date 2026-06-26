@@ -98,7 +98,6 @@ export default function Home() {
             <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
           </a>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {[
             { name: "Razavi Hospital Complex", city: "Mashhad", image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&q=85&w=800", specialty: "World-Class Cardiology & Oncology", description: "State-of-the-art facilities and expert Schedulers." },
