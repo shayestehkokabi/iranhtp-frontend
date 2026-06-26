@@ -56,6 +56,67 @@ export default function Home() {
     { value: "8k+", label: "Patients Assisted" },
     { value: "98%", label: "Satisfaction Rate" },
   ];
+  const newsItems = [
+    {
+      title: "New international patient desk launched",
+      date: "June 2026",
+      desc: "A dedicated support team now helps patients with faster communication and coordination.",
+    },
+    {
+      title: "Top hospitals joined our network",
+      date: "May 2026",
+      desc: "We expanded our partner hospitals to improve access to trusted specialists and treatment plans.",
+    },
+    {
+      title: "24/7 travel support now available",
+      date: "April 2026",
+      desc: "Patients can now receive round-the-clock help for transfers, booking, and arrival guidance.",
+    },
+  ];
+
+  const events = [
+    {
+      title: "International Patient Webinar",
+      date: "15 July 2026",
+      place: "Online",
+      desc: "A live session explaining how medical tourism in Iran works, with Q&A and expert guidance.",
+    },
+    {
+      title: "Hospital Open Day",
+      date: "28 July 2026",
+      place: "Tehran",
+      desc: "A visit program for patients and families to explore facilities, services, and care options.",
+    },
+    {
+      title: "Health Tourism Meetup",
+      date: "10 August 2026",
+      place: "Mashhad",
+      desc: "A networking event for clinics, coordinators, and international patient representatives.",
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "How do I start my treatment request?",
+      answer:
+        "You can send your condition, preferred city, and any reports through the contact form. Our team will review and guide you through the next steps.",
+    },
+    {
+      question: "Do you help with travel and hotel arrangements?",
+      answer:
+        "Yes. We assist with airport pickup, hotel booking, local transfers, and patient-friendly travel coordination.",
+    },
+    {
+      question: "Can you recommend the right hospital?",
+      answer:
+        "Absolutely. We match each patient with a suitable hospital or specialist based on medical needs and destination preferences.",
+    },
+    {
+      question: "Is the consultation free?",
+      answer:
+        "Initial review and guidance can be free depending on the service request. Final treatment costs depend on the selected hospital and procedure.",
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -63,6 +124,16 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <a href="/" className="text-2xl font-black tracking-tight">
+            <a href="#news" className="text-sm text-white/75 transition hover:text-white">
+              News
+            </a>
+            <a href="#events" className="text-sm text-white/75 transition hover:text-white">
+              Events
+            </a>
+            <a href="#faq" className="text-sm text-white/75 transition hover:text-white">
+              FAQ
+            </a>
+
             <span className="text-cyan-400">Iran</span>HTP
           </a>
 
@@ -282,6 +353,109 @@ export default function Home() {
                 <h3 className="mt-5 text-xl font-bold">{step.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-white/65">{step.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* News */}
+      <section id="news" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+              News
+            </p>
+            <h2 className="mt-3 text-4xl font-black tracking-tight">
+              Latest updates from IranHTP
+            </h2>
+            <p className="mt-4 text-white/65">
+              Stay informed about new services, hospital partners, and patient support improvements.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {newsItems.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-7 transition hover:-translate-y-1 hover:bg-white/[0.07]"
+              >
+                <div className="text-sm text-cyan-300">{item.date}</div>
+                <h3 className="mt-3 text-xl font-bold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">{item.desc}</p>
+                <a href="#contact" className="mt-5 inline-flex text-sm font-semibold text-cyan-300 hover:text-cyan-200">
+                  Read more →
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Events */}
+      <section id="events" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+                Events
+              </p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight">
+                Upcoming events and patient sessions
+              </h2>
+              <p className="mt-4 text-white/65">
+                Join webinars, hospital open days, and medical tourism meetups to learn more.
+              </p>
+            </div>
+            <a href="#contact" className="text-sm font-semibold text-cyan-300 hover:text-cyan-200">
+              Ask about an event →
+            </a>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {events.map((event) => (
+              <div
+                key={event.title}
+                className="rounded-3xl border border-white/10 bg-slate-900 p-7 shadow-xl shadow-black/20"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-sm text-cyan-300">
+                    {event.place}
+                  </span>
+                  <span className="text-sm text-white/55">{event.date}</span>
+                </div>
+                <h3 className="mt-5 text-xl font-bold">{event.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/65">{event.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="px-6 py-20">
+        <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/5 p-8 md:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+            FAQ
+          </p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight">
+            Frequently asked questions
+          </h2>
+          <p className="mt-4 max-w-3xl text-white/65">
+            Quick answers to the most common questions from international patients and families.
+          </p>
+
+          <div className="mt-10 grid gap-4">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                className="group rounded-3xl border border-white/10 bg-slate-950/70 p-6"
+              >
+                <summary className="cursor-pointer list-none text-lg font-semibold">
+                  {faq.question}
+                </summary>
+                <p className="mt-4 max-w-4xl text-sm leading-7 text-white/65">
+                  {faq.answer}
+                </p>
+              </details>
             ))}
           </div>
         </div>
